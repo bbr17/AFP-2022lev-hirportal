@@ -21,7 +21,7 @@ app.get("/", (request, response) => {
   response.send("Hello World!");
 });
 
-app.get("/news", news);
+app.use("/news", news);
 
 app.use(errorController.pageNotFound404);
 app.use(errorController.internalServerError500);
