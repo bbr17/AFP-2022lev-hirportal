@@ -1,25 +1,29 @@
 const express = require("express");
+const news = require("./routes/news");
+const errorController = require("./controllers/error");
+const bodyParser = require("body-parser");
+
 const app = express();
+
+app.use(bodyParser.json());
+
+app.use((request, response, next) => {
+  response.setHeader("Access-Control-Allow-Origin", "*"); // allow CORS
+  response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  response.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+  next();
+});
 
 app.get("/", (request, response) => {
   response.send("Hello World!");
 });
 
-const news = [
-  {
-    id: 1,
-    title: "A legelso",
-    content: "Legelso hir tartalma",
-  },
-  {
-    id: 2,
-    title: "Masodik hir",
-    content: "Masodik hir tartalma",
-  },
-];
+app.use("/news", news);
 
-app.get("/news", (request, response) => {
-  response.send(news);
-});
+app.use(errorController.pageNotFound404);
+app.use(errorController.internalServerError500);
 
 app.listen(3000, () => console.log("listening on port 3000..."));
