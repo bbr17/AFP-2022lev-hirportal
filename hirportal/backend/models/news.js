@@ -10,7 +10,7 @@ module.exports = class News {
       {
         id: 1,
         title: "A legelso",
-        content: "Legelso hir tartalma",
+        content: "Legelso hir tartalma updated",
       },
       {
         id: 2,
