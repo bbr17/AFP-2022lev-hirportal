@@ -7,7 +7,13 @@ module.exports = class User {
     this.password = password;
   }
 
-  static exists(email) {
+  static userExists(username) {
+    return database.execute("SELECT * FROM users WHERE username = ?", [
+      username,
+    ]);
+  }
+
+  static emailExists(email) {
     return database.execute("SELECT * FROM users WHERE email = ?", [email]);
   }
 

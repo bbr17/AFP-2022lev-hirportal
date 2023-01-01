@@ -1,1 +1,29 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="'user123'" formControlName="username" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          placeholder="Min. length 3"
+          formControlName="password"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <button
+    type="submit"
+    color="accent"
+    [disabled]="!loginForm.valid"
+    mat-raised-button
+  >
+    <span>Login</span>
+  </button>
+</form>
