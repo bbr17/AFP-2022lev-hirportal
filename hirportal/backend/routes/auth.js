@@ -11,8 +11,8 @@ router.post(
     body("email")
       .isEmail()
       .withMessage("Please enter a valid email.")
-      .custom(async (username, email) => {
-        const userToRegister = await user.exists(username, email);
+      .custom(async (email) => {
+        const userToRegister = await user.exists(email);
         if (userToRegister[0].length > 0) {
           return Promise.reject("Email address already exist!");
         }
@@ -20,9 +20,7 @@ router.post(
       .normalizeEmail(),
     body("password").trim().isLength({ min: 3 }),
   ],
-  authController.signup
+  authController.register
 );
-
-router.post("/login", authController.login);
 
 module.exports = router;

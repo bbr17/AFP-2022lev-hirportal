@@ -7,11 +7,8 @@ module.exports = class User {
     this.password = password;
   }
 
-  static exists(username, email) {
-    return database.execute(
-      "SELECT * FROM users WHERE username = ? AND email = ?",
-      [username, email]
-    );
+  static exists(email) {
+    return database.execute("SELECT * FROM users WHERE email = ?", [email]);
   }
 
   static register(user) {

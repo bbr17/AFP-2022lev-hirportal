@@ -1,9 +1,12 @@
 const express = require("express");
 const news = require("./routes/news");
+const auth = require("./routes/auth");
 const errorController = require("./controllers/error");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -22,6 +25,7 @@ app.get("/", (request, response) => {
 });
 
 app.use("/news", news);
+app.use("/auth", auth);
 
 app.use(errorController.pageNotFound404);
 app.use(errorController.internalServerError500);

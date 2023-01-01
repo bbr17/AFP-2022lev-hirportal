@@ -1,9 +1,9 @@
 const { validationResult } = require("express-validator");
 const userContext = require("../models/user");
 
-exports.signup = async (request, response, next) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty()) return;
+exports.register = async (request, response, next) => {
+  //   const errors = validationResult(request);
+  //   if (!errors.isEmpty()) return;
 
   const userToRegister = {
     username: request.body.username,
