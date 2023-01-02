@@ -1,1 +1,10 @@
-<p>news works!</p>
+<app-create-news (create)="createNews()"></app-create-news>
+
+<mat-card *ngFor="let news of newsList$ | async">
+  <button *ngIf="news.id === 2" mat-icon-button>
+    <mat-icon color="warn">Delete</mat-icon>
+  </button>
+  <div class="news-id">{{ news.id }}</div>
+  <div class="news-title">{{ news.title }}</div>
+  <div class="news-content">{{ news.content }}</div>
+</mat-card>

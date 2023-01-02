@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+  isAuthenticated = false;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  login() {
+    this.authService.isUserLoggedIn$.subscribe((isLoggedIn) => {
+      this.isAuthenticated = isLoggedIn;
+    });
   }
 
+  logout(): void {
+    localStorage.removeItem('token');
+    this.authService.isUserLoggedIn$.next(false);
+    this.router.navigate(['login']);
+  }
 }

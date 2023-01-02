@@ -1,0 +1,33 @@
+<button (click)="isOpen = !isOpen" color="accent" mat-raised-button>
+  <span>+ New Post</span>
+</button>
+<form
+  *ngIf="isOpen"
+  [formGroup]="createNewsForm"
+  #createNewsFormDirective
+  (ngSubmit)="onSubmit(createNewsForm.value)"
+  novalidate
+>
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="'News Title" formControlName="title" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Content</mat-label>
+        <input matInput placeholder="News Content" formControlName="content" />
+      </mat-form-field>
+    </div>
+  </div>
+  <button
+    type="submit"
+    color="accent"
+    [disabled]="!createNewsForm.valid"
+    mat-raised-button
+  >
+    <span>Create</span>
+  </button>
+</form>

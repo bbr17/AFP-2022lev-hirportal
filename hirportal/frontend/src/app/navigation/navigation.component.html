@@ -5,10 +5,22 @@
     </a>
   </span>
   <span>
-    <a routerLinkActive="active-link" routerLink="/news"> News </a>
+    <a
+      *ngIf="isAuthenticated"
+      routerLinkActive="active-link"
+      routerLink="/news"
+    >
+      News
+    </a>
   </span>
   <span>
-    <a routerLinkActive="active-link" routerLink="/login"> Login </a>
+    <a
+      *ngIf="!isAuthenticated"
+      routerLinkActive="active-link"
+      routerLink="/login"
+    >
+      Login
+    </a>
   </span>
   <span>
     <a routerLinkActive="active-link" routerLink="/register"> Register </a>
