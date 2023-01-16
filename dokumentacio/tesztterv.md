@@ -1,3 +1,7 @@
+# Tesztterv
+
+# Tesztelési jegyzőkönyv
+
 | Program neve | Tesztelő neve | Dátum | Becsült idő |
 | :----------- | :------------ | :---- | :---------- |
 | Hirportal    | | | | | | |
